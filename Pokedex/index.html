@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Gotta Cath'em all</title>
+</head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var string_add = "";
+		for (var i = 1; i <=151; i++) {
+			string_add = string_add + "<img src='http://pokeapi.co/media/img/" + i + ".png' id=" + i +">";
+		}
+
+		$("#pokemon").append(string_add);
+
+		$('img').on('click',function(){
+
+			var poke_id = $(this).attr('id');
+			console.log(poke_id);
+
+			var url = "http://pokeapi.co/api/v1/pokemon/" + poke_id + "/";
+			console.log(url);
+
+			function show(res) {
+				console.log(res);
+
+				html_str = "";
+				html_str += "<img src='http://pokeapi.co/media/img/" + 
+								poke_id + ".png' id=" + poke_id +">";
+				html_str += "<h2>" + res.name + "</h2>";
+
+				html_str += "<h4>Type</h4>";
+				html_str += "<ul>";
+				for (var i = 0; i < res['types'].length; i++) {
+					html_str += "<li>" + res['types'][i].name + "</li>";
+				}
+				html_str += "</ul>";
+
+				html_str += "<p> Weight: " + res['weight'] + "</p>";
+				html_str += "<p> Height: " + res['height'] + "</p>";
+
+				$("#spotlight").html(html_str);
+			}
+
+			$.get(url, show, 'json');
+		})
+	})
+</script>
+<body>
+	<div id="container">
+		<div id="spotlight">
+			
+		</div>
+		<div id="pokemon">
+			
+		</div>
+		
+	</div>
+</body>
+</html>

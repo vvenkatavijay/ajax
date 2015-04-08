@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Gotta Cath'em all</title>
+</head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var string_add = "";
+		for (var i = 1; i <=151; i++) {
+			string_add = string_add.concat("<img src='http://pokeapi.co/media/img/",i,".png'>");
+		}
+
+		$("#container").append(string_add);
+	})
+</script>
+<body>
+	<div id="container">
+		
+	</div>
+</body>
+</html>
